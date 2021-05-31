@@ -15,4 +15,8 @@ export KUSTOMIZE_PLUGIN_HOME=$PWD/.cache/plugins
 
 # render example kustomization into packagedeployment
 kustomize build --enable-alpha-plugins config/example/kustomize
+
+# render example kustomization (which inflates a helm chart) into packagedeployment
+# needs helm v3 installed
+kustomize build --enable-alpha-plugins config/example/kustomize-helm
 ```
