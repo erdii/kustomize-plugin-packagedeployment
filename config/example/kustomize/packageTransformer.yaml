@@ -1,0 +1,28 @@
+apiVersion: packages.k8s.erdii.net/v1alpha1
+kind: PackageTransformer
+metadata:
+  name: package-name
+  namespace: package-namespace
+readinessProbes:
+- name: Available
+  probe:
+    condition:
+      status: "True"
+      type: Available
+    type: Condition
+  selector:
+    kind:
+      group: apps
+      kind: Deployment
+    type: Kind
+- name: Updated
+  probe:
+    fieldsEqual:
+      fieldA: .status.updatedReplicas
+      fieldB: .status.replicas
+    type: FieldsEqual
+  selector:
+    kind:
+      group: apps
+      kind: Deployment
+    type: Kind
